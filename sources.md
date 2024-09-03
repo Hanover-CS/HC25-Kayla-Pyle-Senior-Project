@@ -125,3 +125,45 @@ LegendKeeper would be a competitor to my project.
 
 [LinkedIn](https://www.linkedin.com/pulse/detailed-comparison-between-web-app-vs-website-lts-group-vietnam-4j2fc/)
 
+## Language
+
+**JavaScript:**
+|Benefits|Downsides|
+|----|----|
+|worked with before|single-thread execution|
+|standard for web apps|nested callback?|
+|supported by all major browsers||
+|vast resources||
+|many frameworks||
+
+**Python:**
+|Benefits|Downsides|
+|----|----|
+|very comfortable with|not designed for mobile app dev|
+|simplicity|thread maximum (not too concerned)|
+|crazy amount of libraries|not standard|
+|versatile||
+
+**PHP:**
+|Benefits|Downsides|
+|----|----|
+|have not worked with|made for web development|
+|very popular|scalability issues|
+|integration with web servers|less modern|
+|itegration with databases||
+
+**Java:**
+|Benefits|Downsides|
+|----|----|
+|worked with before|slow start time|
+|highly secure|not standard|
+|threading support|memory consumption|
+|great scalabilty||
+
+**Decision:** It was tempting to do my project in java, as I feel I am most comfortable with that. However, after looking into the downsides I have decided against it. I want my main language to be javascript. After using it over the summer I got reasonably comfortable with it and found that many web app related resources online talk in terms of js. Javascript will likely cover most of my back end and my front end will be covered by html and css. I will likely use SQL for database interaction since it is the only language of the kind I am familiar with (at all). I'd rather not need to fight an intense learning curve if not needed.
+
+### Sources
+
+[Intelivita](https://www.intelivita.com/blog/web-development-languages/)
+
+[ComputerScience.org](https://www.computerscience.org/bootcamps/guides/programming-languages-web-development/#:~:text=Developers%20use%20web%20development%20languages,end%20or%20back%2Dend%20development.)
