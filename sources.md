@@ -1,13 +1,24 @@
+# Table Of Contents
+
+<ul>
+  <li>Exisiting Solutions</li>
+    <ul>
+      <li>World Anvil</li>
+      <li>Campfire</li>
+      <li>Kanka</li>
+      <li>LegendKeeper</li>
+    </ul>
+  <li>Technologies</li>
+    <ul>
+      <li>Platform</li>
+      <li>Language</li>
+    </ul>
+</ul>
+
+
 # Existing Solutions
 
 Researching: My World Wiki - world-building website.
-
-<ol>
-  <li>World Anvil</li>
-  <li>Campfire</li>
-  <li>Kanka</li>
-  <li>LegendKeeper</li>
-</ol>
 
 ## World Anvil
 
@@ -101,7 +112,7 @@ LegendKeeper would be a competitor to my project.
 **Hidden entries/sections:** Since a wikipage can have mutliple entires within, a full page or individual enty can be made hidden to those the world is shared to. This is the closest to my desired hiding system. Although, I would like all the information to be where the user wants it to be, so it does not need to be seperated based on hidden or not hidden.
 
 
-# Resources
+# Technologies
 
 ## Platform (Website or Web App)
 
