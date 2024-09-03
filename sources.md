@@ -99,3 +99,29 @@ LegendKeeper would be a competitor to my project.
 **Shortcuts:** A wikipage can be given a short cut above all the others. I think this count be useful for things such as continent or important countries. However, I think a pinning or folder approach would be the way I would prefer to do it. I can see the short-cut bar becoming cluttered quickly.
 
 **Hidden entries/sections:** Since a wikipage can have mutliple entires within, a full page or individual enty can be made hidden to those the world is shared to. This is the closest to my desired hiding system. Although, I would like all the information to be where the user wants it to be, so it does not need to be seperated based on hidden or not hidden.
+
+
+# Resources
+
+## Platform (Website or Web App)
+
+|Website  |Web App |
+|-----    |-----   |
+|static|dynamic|
+|users can only read|users can read and write/edit|
+|display information|change/store changing information|
+||tends to require user authentication|
+|greater accessibilty|greater scalability / functionality|
+|simple|complex|
+|easy to update|complex development|
+
+
+**Decision:** Web App. My project relies heavy on user interaction and display of dynamic data. A;though more complex than a website, I believe the web app will better support my needs.
+### Sources
+
+[Wesrom](https://wesrom.com/insights/engineering-insights/website-vs-web-application-what-should-you-choose-wesrom/)
+
+[Geeks For Geeks](https://www.geeksforgeeks.org/difference-between-web-application-and-website/)
+
+[LinkedIn](https://www.linkedin.com/pulse/detailed-comparison-between-web-app-vs-website-lts-group-vietnam-4j2fc/)
+
