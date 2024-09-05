@@ -185,7 +185,7 @@ LegendKeeper would be a competitor to my project.
 
 **Relational Database:** standard / most used type of database, good for holding long strings.
 
-**Decision:** Based on research, it seems the graph databse will work best for my project which relies heavily on relationships and linking entries together. Additionally, NeoJ4 offers a free version as well as extensive learning courses to help over come that learning curve. However, it needs a public or private cloud to run on, and I'm not sure what that is, so that will have to be what I look into next.
+**Decision:** Based on research, it seems the graph databse will work best for my project which relies heavily on relationships and linking entries together. Additionally, NeoJ4 offers a free version as well as extensive learning courses to help over come that learning curve. 
 
 ### Sources
 
