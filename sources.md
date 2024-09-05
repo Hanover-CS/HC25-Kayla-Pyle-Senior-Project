@@ -171,10 +171,26 @@ LegendKeeper would be a competitor to my project.
 |threading support|memory consumption|
 |great scalabilty||
 
-**Decision:** It was tempting to do my project in java, as I feel I am most comfortable with that. However, after looking into the downsides I have decided against it. I want my main language to be javascript. After using it over the summer I got reasonably comfortable with it and found that many web app related resources online talk in terms of js. Javascript will likely cover most of my back end and my front end will be covered by html and css. I will likely use SQL for database interaction since it is the only language of the kind I am familiar with (at all). I'd rather not need to fight an intense learning curve if not needed.
+**Decision:** It was tempting to do my project in java, as I feel I am most comfortable with that. However, after looking into the downsides I have decided against it. I want my main language to be javascript. After using it over the summer I got reasonably comfortable with it and found that many web app related resources online talk in terms of js. Javascript will likely cover most of my back end and my front end will be covered by html and css. I will later decide on database and what langauge to sue to interact with it. I'd rather not need to fight an intense learning curve if not needed.
 
 ### Sources
 
 [Intelivita](https://www.intelivita.com/blog/web-development-languages/)
 
 [ComputerScience.org](https://www.computerscience.org/bootcamps/guides/programming-languages-web-development/#:~:text=Developers%20use%20web%20development%20languages,end%20or%20back%2Dend%20development.)
+
+## Database
+
+**Graph Database:** used to track and store relationships between data above all else. In graph databases, data is held in nodes and edges (or relationships) connect these nodes in complex realtionships. Nodes and edges can both have properties, edges have direction.
+
+**Relational Database:** standard / most used type of database, good for holding long strings.
+
+**Decision:** Based on research, it seems the graph databse will work best for my project which relies heavily on relationships and linking entries together. Additionally, NeoJ4 offers a free version as well as extensive learning courses to help over come that learning curve. However, it needs a public or private cloud to run on, and I'm not sure what that is, so that will have to be what I look into next.
+
+### Sources
+
+[Graph Database Wikipedia](https://en.wikipedia.org/wiki/Graph_database)
+
+[Neo4j Learning](https://graphacademy.neo4j.com/courses/modeling-fundamentals)
+
+[Stack Overflow](https://softwareengineering.stackexchange.com/questions/141093/best-approach-for-a-database-of-long-strings)
