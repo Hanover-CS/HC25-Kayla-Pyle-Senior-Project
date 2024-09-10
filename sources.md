@@ -12,6 +12,9 @@
     <ul>
       <li>Platform</li>
       <li>Language</li>
+      <li>Database</li>
+      <li>Libraries</li>
+      <li>Frameworks</li>
     </ul>
 </ul>
 
@@ -194,3 +197,31 @@ LegendKeeper would be a competitor to my project.
 [Neo4j Learning](https://graphacademy.neo4j.com/courses/modeling-fundamentals)
 
 [Stack Overflow](https://softwareengineering.stackexchange.com/questions/141093/best-approach-for-a-database-of-long-strings)
+
+## Libraries
+
+**React:** React's focus is on creating and connecting components. React also acts as an architecture that assist in fetching data, which I believe will be helpful in working with a database. Dr. Skiadas also recommended react to me for my summer internship, and although I was unable to use it there I'd like to now.
+
+**jQuery:** jQuery is a very popular javascript library which assists in HTML document manipulation
+
+### Sources
+
+[React](https://react.dev/)
+
+[Kinsta](https://kinsta.com/blog/javascript-libraries/)
+
+## Frameworks
+
+**NextJs:** Recommended to be used with React library. Makes working with HTML and CSS simpler, as well as helping with server connections and optimization.
+
+**AngularJs:** Framework which focuses on code organization in the MVC format. I think this assist in organization could be helpful, but I may not struggle implementing similar organization on my own.
+
+**Decision:** I want to attempt to work with the Next.js framework. I'm hopeful that with as big a user base as next has, that finding help and learning the specifics.
+
+### Sources
+
+[React](https://react.dev/)
+
+[Next.js](https://nextjs.org/)
+
+[GeeksForGeeks](https://www.geeksforgeeks.org/javascript-libraries-and-frameworks/)
