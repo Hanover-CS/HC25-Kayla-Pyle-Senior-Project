@@ -1,10 +1,8 @@
-# Building a Wiki-Style World-Building Web Application
-
-## Summary
+# Summary
 
 This web app will act as a personal wiki-style organization platform meant for use my Game Masters and Authors who need help in organizing all the information regarding their games, worlds, story-lines, etc. Each world will have a dashboard page, showing all created entries that can be searched through and filtered based on type, folder, or name. Each of these entries will act as a single wiki-page. It will have a title, summarizing text, related images, and within the text a user can add links to other related entries. Entries can be given a type, including character, event, place, and more. Additionally, a user will have the ability to add different types/categories so that it may better fit their needs.
 
-## Similar Solutions
+# Similar Solutions
 
 There exist many world-building web tools. A majority of them focus on particular details or pertain mostly to a particular audience. The examples that most closely resemble my project idea include World Anvil, Campfire, Kanka, and LegendKeeper. 
 
@@ -16,7 +14,7 @@ There exist many world-building web tools. A majority of them focus on particula
 
 **LegendKeeper** is the solution I found most similar to my own, however it does require purchase as well. Inforamtion in LegendKeeper is organized in wiki-pages and does link together entries in the in-text format. Each wiki-page can have multiple entries within it, and can be given tags rather than having set categories. Where the other options I investigated suffered from, in my opinion, a cluttered and overwhelming layout, I believe LegendKeeper suffers from the opposite. The site design is too simple and the more complex features and options are hidden away where many users may never really know about them. [4]
 
-### References
+## References
 
 [1] [World Anvil](https://www.worldanvil.com/)
 
