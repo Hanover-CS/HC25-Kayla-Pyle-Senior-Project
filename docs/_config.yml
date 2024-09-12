@@ -10,5 +10,5 @@ kramdown:
 remote_theme: pages-themes/merlot@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
-title: title
-description: description
+title: MyWorld Wiki
+description: Kayla Pyle's Wiki-Style World-Building Web App
