@@ -16,10 +16,14 @@ There exist many world-building web tools. A majority of them focus on particula
 
 ## References
 
-[1] [World Anvil](https://www.worldanvil.com/)
+[1] [“Worldbuilding and RPG Campaign Management | World Anvil,” www.worldanvil.com. https://www.worldanvil.com/
+‌](https://www.worldanvil.com/)
 
-[2] [Campfire](https://www.campfirewriting.com/)
+[2] [“Campfire - Writing Software for Authors and Worldbuilders,” www.campfirewriting.com. https://www.campfirewriting.com/
+‌](https://www.campfirewriting.com/)
 
-[3] [Kanka](https://app.kanka.io/)
+[3] [“Kanka,” app.kanka.io, 2024. https://app.kanka.io/
+‌](https://app.kanka.io/)
 
-[4] [LegendKeeper](https://app.legendkeeper.com/)
+[4] [“LegendKeeper,” Legendkeeper.com, 2024. https://app.legendkeeper.com/‌
+](https://app.legendkeeper.com/)
