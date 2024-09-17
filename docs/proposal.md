@@ -39,7 +39,7 @@ For **frameworks**, there were many options out there compatable with javascript
 
 ### References
 
-[1] “Worldbuilding and RPG Campaign Management | World Anvil,” www.worldanvil.com. https://www.worldanvil.com/
+[1] “Worldbuilding and RPG Campaign Management World Anvil,” www.worldanvil.com. https://www.worldanvil.com/
 
 [2] “Campfire - Writing Software for Authors and Worldbuilders,” www.campfirewriting.com. https://www.campfirewriting.com/
 
@@ -49,7 +49,7 @@ For **frameworks**, there were many options out there compatable with javascript
 
 [5] S. Shukla, “10 Best Languages for Web Development In 2024,” Intelivita, Feb. 19, 2024. https://www.intelivita.com/blog/web-development-languages/
 
-[6] “Best Programming Languages for Web Development | Computerscience.org,” www.computerscience.org, Sep. 28, 2022. https://www.computerscience.org/bootcamps/guides/programming-languages-web-development/#:~:text=Developers%20use%20web%20development%20languages
+[6] “Best Programming Languages for Web Development Computerscience.org,” www.computerscience.org, Sep. 28, 2022. https://www.computerscience.org/bootcamps/guides/programming-languages-web-development/#:~:text=Developers%20use%20web%20development%20languages
 
 [7] Wikipedia Contributors, “Graph database,” Wikipedia, Nov. 22, 2019. https://en.wikipedia.org/wiki/Graph_database
 ‌
