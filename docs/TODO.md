@@ -2,6 +2,7 @@
 # TODO List
 
 <ul>
+    <li>finish up proposal</li>
     <li>go through neo4j setting up with javascript app</li>
         <ul>
             <li>make tutorial on graph database interaction</li>
