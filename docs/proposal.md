@@ -1,6 +1,29 @@
-# Summary
+# Main Features
 
-This web app will act as a personal wiki-style organization platform meant for use my Game Masters and Authors who need help in organizing all the information regarding their games, worlds, story-lines, etc. Each world will have a dashboard page, showing all created entries that can be searched through and filtered based on type, folder, or name. Each of these entries will act as a single wiki-page. It will have a title, summarizing text, related images, and within the text a user can link certain words or phrases to other related entries. Entries can be given a type: character, event, place, and more. Additionally, a user will have the ability to add different categories so that it may better fit their needs. Ideally, I will want these worlds to be sharable to other users, where the original owner of the world can decide what is visible and what is hidden from those they share it to.
+This web app will act as a personal wiki-style organization platform meant for use my Game Masters and Authors who need help in organizing all the information regarding their games, worlds, story-lines, etc. Some key features of this web app will be:
+<ul>
+  <li>DashBoard Page</li>
+  <ul>
+    <li>Shows all created entries</li>
+    <li>Can be search through filtered by type, folder, or name</li>
+  </ul>
+  <li>Wiki-Page Style Entries</li>
+  <ul>
+    <li>Title</li>
+    <li>Summarizing text</li>
+    <li>Related images</li>
+    <li>In-text links to other related entries</li>
+    <li>Each entry will be given a type</li>
+    <ul>
+      <li>There are default types such as character, event, place, etc.</li>
+      <li>Users can add different categories</li>
+    </ul>
+  </ul>
+  <li>Worlds will be sharable to other users</li>
+  <ul>
+    <li>World owners can hide certain information or full entires from those who they share with</li>
+  </ul>
+</ul>
 
 # Similar Solutions
 
@@ -8,7 +31,7 @@ There exist many world-building web tools. A majority of them focus on particula
 
 ## World Anvil
 
-**World Anvil** is by far the most popular of options. World Anvil offeres slightly different experiences based on whether the user is a game master, author, writer, etc. It organizes information into articles, similar to my idea of entries, without the linking capability. Many feature such as interactive maps, timelines, and more are hidden behind a pay wall. A user's world is public to view, and World Anvil has a thriving community of users which offer the ability to look into their worlds and share ideas. [1] Although World Anvil is very popular and offers many different features that my project may not, I seek to streamline and have less clutter for my users, offering *fewer* (but free) features that are more sepcialized. Additionally, I want the user to be able to share their world with others, but privately without the weight of thousands of users having the ability to see it all.
+**World Anvil** is by far the most popular of options. World Anvil offers slightly different experiences based on whether the user is a game master, author, writer, etc. It organizes information into articles, similar to my idea of entries, without the linking capability. Many feature such as interactive maps, timelines, and more are hidden behind a pay wall. A user's world is public to view, and World Anvil has a thriving community of users which offer the ability to look into their worlds and share ideas. [1] Although World Anvil is very popular and offers many different features that my project may not, I seek to streamline and have less clutter for my users, offering *fewer* (but free) features that are more sepcialized. Additionally, I want the user to be able to share their world with others, but privately without the weight of thousands of users having the ability to see it all.
 
 ## Campfire
 
