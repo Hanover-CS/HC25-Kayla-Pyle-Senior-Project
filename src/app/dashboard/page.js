@@ -3,9 +3,9 @@
 
     var neo4j = require('neo4j-driver')
   
-    const URI = 'neo4j+s://b0362c08.databases.neo4j.io'
-    const USER = 'neo4j'
-    const PASSWORD = 'EY67C9MSuqJjbU-ZarxV40Eakor7UnuHiNGAKuXlgig'
+    const URI = process.env.URI
+    const USER = process.env.USER
+    const PASSWORD = process.env.PASSWORD
     let driver
   
     try {
