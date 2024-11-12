@@ -54,4 +54,4 @@ looks a bit like:
 
 If it does, that means you've created a successful connection to your aura instance database!
 
-Now, let's get that sensitive information out of the code and into an .env file. Follow this link to (Step 3)[/docs/tutorial/step_three.md].
+Now, let's get that sensitive information out of the code and into an .env file. Follow this link to [Step 3](/docs/tutorial/step_three.md).
