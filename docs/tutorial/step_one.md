@@ -25,3 +25,5 @@ After this, you should find a page that looks like this:
 *the instance seen in this example no longer exisits and was deleted after tht tutorial was made*
 
 This is your aura instance dashboard, and once your Instance01 says that is is running, you offically have a free Neo4j Aura Instance set up and ready to use!
+
+Now you're ready to set up your driver! Follow this link to [Step 2](/docs/tutorial/step_two.md).
