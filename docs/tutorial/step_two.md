@@ -44,6 +44,7 @@ var neo4j = require('neo4j-driver');
     console.log(serverInfo)
   } catch(err) {
     console.log(`Connection error\n${err}\nCause: ${err.cause}`)
+    await driver.close()
   }
 })();
 ```
