@@ -17,10 +17,7 @@ let driver
     } catch(err) {
       console.log(`Connection error\n${err}\nCause: ${err.cause}`)
       await driver.close()
-      return
     }
-  
-    // Use the driver to run queries
 
   })();
 
@@ -61,3 +58,8 @@ export async function write(cypher, params = {}) {
       await session.close()
     }
   }
+
+  // read example:
+  //    await read('MATCH (e:Entry) RETURN e.name AS name')
+  // write example:
+  //    await write("MERGE (:Entry:Character {name: 'The Green Knight', text:''})")

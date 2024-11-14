@@ -1,8 +1,8 @@
 import { read } from '../lib/neo4j.js'
 
 async function populateSelect() {
-  const entries = await read('MATCH (e:Entry) RETURN e.name AS name', {})
-  console.log(entries);
+  const entries = await read('MATCH (e:Entry) RETURN e.name AS name')
+  console.log(entries)
 }
 
 populateSelect()
