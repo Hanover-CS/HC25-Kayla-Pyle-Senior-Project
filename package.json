@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest run",
+    "format": "prettier src/app --write"
   },
   "dependencies": {
     "neo4j-driver": "^5.26.0",
@@ -16,6 +18,8 @@
   },
   "devDependencies": {
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "prettier": "3.3.3",
+    "tailwindcss": "^3.4.1",
+    "vitest": "^2.1.5"
   }
 }
