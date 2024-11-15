@@ -1,3 +1,7 @@
+// src/app/dashboard/page.js
+// Dashboard Page file holds and exports Dashboard react component with a child component DashboardSelect
+// The second page openned when running the web app
+
 import { getAllEntries } from "../lib/neo4j.js";
 import React from "react";
 

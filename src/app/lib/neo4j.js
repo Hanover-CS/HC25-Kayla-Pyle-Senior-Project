@@ -1,3 +1,7 @@
+// neo4j.js
+// This file creates the neo4j database driver object and exports functions used to interact with database
+
+
 let driver;
 
 (async () => {

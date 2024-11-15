@@ -1,5 +1,5 @@
 // neo4j.test.js
-// Testing the write, read, 
+// Testing the createEntry, readEntry, deleteEntry functions of neo4j.js
 
 import { expect, test } from 'vitest'
 import { createEntry, readEntry, getAllEntries, deleteEntry } from '../app/lib/neo4j'

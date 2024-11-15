@@ -1,3 +1,7 @@
+// src/app/page.js
+// Home Page file holds and exports Home react component
+// The first page openned when running the web app
+
 import Image from "next/image";
 import Link from "next/link";
 import worldMap from "./assets/WorldMap.jpg";
