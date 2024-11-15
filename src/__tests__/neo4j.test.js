@@ -1,4 +1,6 @@
-// driver.test.js
+// neo4j.test.js
+// Testing the write, read, 
+
 import { expect, test } from 'vitest'
 import { read, write } from '../app/lib/neo4j'
 
