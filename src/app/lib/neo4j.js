@@ -20,12 +20,29 @@ let driver;
 })();
 
 export async function getAllEntries() {
-  return await read('MATCH (e:Entry) RETURN e.name AS name')
+  return await read("MATCH (e:Entry) RETURN e.name AS name")
 }
 
 export async function readEntry(name) {
-  let query = 'MATCH (e:Entry { name: ' + name + ' }) RETURN e.name AS name'
+  let query = "MATCH (e:Entry { name: '" + name + "' }) RETURN e.name AS name"
   return read(query)
+}
+
+export async function createEntry(name) {
+  let query = "MERGE (:Entry {name: '" + name + "', text:''})"
+  return write(query)
+}
+
+export async function deleteEntry(name) {
+  let query = "MATCH (e:Entry {name: '" + name + "'}) DELETE e"
+  const session = driver.session();
+  try {
+    await session.run(query);
+  } catch (error) {
+    console.error('Error deleting node:', error);
+  } finally {
+    await session.close();
+  }
 }
 
 async function read(cypher, params = {}) {
