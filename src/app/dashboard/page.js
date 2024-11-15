@@ -1,8 +1,7 @@
-import { read } from '../lib/neo4j.js'
+import { getAllEntries } from '../lib/neo4j.js'
 import React from 'react'
 
-const entries = await read('MATCH (e:Entry) RETURN e.name AS name')
-
+const entries = await getAllEntries()
 
 function DashboardSelect(entries) {
   return (

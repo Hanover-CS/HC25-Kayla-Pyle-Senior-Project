@@ -19,7 +19,16 @@ let driver;
   }
 })();
 
-export async function read(cypher, params = {}) {
+export async function getAllEntries() {
+  return await read('MATCH (e:Entry) RETURN e.name AS name')
+}
+
+export async function readEntry(name) {
+  let query = 'MATCH (e:Entry { name: ' + name + ' }) RETURN e.name AS name'
+  return read(query)
+}
+
+async function read(cypher, params = {}) {
   // 1. Open a session
   const session = driver.session();
 
@@ -37,7 +46,7 @@ export async function read(cypher, params = {}) {
   }
 }
 
-export async function write(cypher, params = {}) {
+async function write(cypher, params = {}) {
   // 1. Open a session
   const session = driver.session();
 
