@@ -14,6 +14,7 @@ let driver;
     console.log(serverInfo);
   } catch (err) {
     console.log(`Connection error\n${err}\nCause: ${err.cause}`);
+    if(driver == null) { return; }
     await driver.close();
   }
 })();
