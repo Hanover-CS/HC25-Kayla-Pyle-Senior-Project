@@ -10,7 +10,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     env: 
-      URI: ${{secrets.DB_USER}}
+      URI: ${{secrets.DB_URI}}
       USER: ${{secrets.DB_USER}}
       PASSWORD: ${{secrets.DB_PASSWORD}}
 
