@@ -12,7 +12,7 @@ jobs:
     env: 
       URI: ${{vars.DB_USER}}
       USER: ${{vars.DB_USER}}
-      PASSWORD: ${{vars.PASSWORD}}
+      PASSWORD: ${{vars.DB_PASSWORD}}
 
     steps:
       - name: Checkout
