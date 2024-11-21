@@ -2,34 +2,34 @@
 // Testing the createEntry, readEntry, deleteEntry functions of neo4j.js
 
 import { expect, test } from 'vitest'
-import { createEntry, readEntry, getAllEntries, deleteEntry } from '../app/lib/neo4j'
+import { Neo4jDriver } from '../app/lib/neo4j'
 
 function clearDB() {
-    const entries = getAllEntries()
+    const entries = Neo4jDriver.getAllEntries()
     for (let i = 0; i < entries.length; i++) {
-        deleteEntry(entries[i].name)
+        Neo4jDriver.deleteEntry(entries[i].name)
     }
 }
 
 test('createEntry method adds Bob', async () => {
-    await createEntry('Bob')
-    let result = await readEntry('Bob')
+    await Neo4jDriver.createEntry('Bob')
+    let result = await Neo4jDriver.readEntry('Bob')
     expect(result).toEqual([{name: 'Bob'}])
     clearDB()
 })
 
 test('deleteEntry deletes Bob', async () => {
-    await createEntry('Bob')
-    deleteEntry('Bob')
-    let result = await readEntry('Bob')
+    await Neo4jDriver.createEntry('Bob')
+    await Neo4jDriver.deleteEntry('Bob')
+    let result = await Neo4jDriver.readEntry('Bob')
     expect(result).toEqual([])
 })
 
 test('getAllEntries returns Bob, Sally, and Monica', async () => {
-    await createEntry('Bob')
-    await createEntry('Sally')
-    await createEntry('Monica')
-    let result = await getAllEntries()
+    await Neo4jDriver.createEntry('Bob')
+    await Neo4jDriver.createEntry('Sally')
+    await Neo4jDriver.createEntry('Monica')
+    let result = await Neo4jDriver.getAllEntries()
     expect(result).toEqual([{name: 'Bob'}, {name: 'Sally'}, {name: 'Monica'}])
     clearDB()
 })
