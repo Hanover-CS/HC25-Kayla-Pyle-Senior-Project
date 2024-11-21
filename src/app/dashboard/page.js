@@ -4,7 +4,7 @@
 
 import React from "react";
 import DashboardSelect from '../components/DashboardSelect.js'
-
+import { Neo4jDriver } from '../lib/neo4j.js'
 
 export default function Dashboard() {
 

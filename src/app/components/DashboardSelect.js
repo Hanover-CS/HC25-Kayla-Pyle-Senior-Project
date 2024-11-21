@@ -7,9 +7,9 @@ import { useState, useEffect } from "react";
 export default function DashboardSelect() {
   const [options, setOptions] = useState([{ name: "" }]);
 
-  useEffect(() => {
-    Neo4jDriver.getAllEntries().then( (entries) =>
-        setOptions(entries) );    
+  useEffect(async () => {
+    let entries = await Neo4jDriver.getAllEntries()
+    setOptions(entries)   
   }, []);
 
   return (
