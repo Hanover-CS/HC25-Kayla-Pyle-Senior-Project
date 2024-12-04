@@ -1,21 +1,16 @@
 "use client";
 
-import React from "react";
-import { Neo4jDriver } from "../lib/neo4j";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+// import { Neo4jDriver } from "../lib/neo4j";
 
-export default function DashboardSelect() {
-  const [options, setOptions] = useState([{ name: "" }]);
+// let entries = await Neo4jDriver.getAllEntries();
 
-  useEffect(async () => {
-    let entries = await Neo4jDriver.getAllEntries()
-    setOptions(entries)   
-  }, []);
-
+export default function DashboardSelect( {entries} ) {
+  const [selectedElement, setSelectedElement] = useState(null)
   return (
     <select className="form-select">
-      {options.map((option) => (
-        <option value={option.name}>{option.name}</option>
+      {entries.map((option) => (
+        <option value={option.name} key={option.name}>{option.name}</option>
       ))}
     </select>
   );
