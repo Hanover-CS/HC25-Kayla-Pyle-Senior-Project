@@ -1,13 +1,18 @@
-// src/app/dashboard/page.js
-// Dashboard Page file holds and exports Dashboard react component with a child component DashboardSelect
-// The second page openned when running the web app
 
 import React from "react";
 import DashboardSelect from "../components/DashboardSelect";
 import { Neo4jDriver } from "../lib/neo4j";
 
+/**
+  * All entires from the database
+  * @type {list}
+  */
 let entries = await Neo4jDriver.getAllEntries();
 
+/**
+ * A page component that displays the dashboard
+ * @component
+ */
 export default function Dashboard() {
 
   return (

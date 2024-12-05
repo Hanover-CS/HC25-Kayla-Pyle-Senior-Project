@@ -1,9 +1,10 @@
 "use client";
-
 import React, { useState } from "react";
-// import { Neo4jDriver } from "../lib/neo4j";
 
-// let entries = await Neo4jDriver.getAllEntries();
+/**
+ * A select componenet which displays all entries from database.
+ * @component
+ */
 
 export default function DashboardSelect( {entries} ) {
   const [selectedElement, setSelectedElement] = useState(null)

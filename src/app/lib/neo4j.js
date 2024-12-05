@@ -1,19 +1,26 @@
-// neo4j.js
-// This file creates the neo4j database driver object and exports functions used to interact with database
+/**
+ * @class Holds the Neo4j driver object instance.
+ * @description This singleton class interacts with the Neo4j database to retrive and write information.
+ * 
+ * @constructor
+ */
 
 const URI = process.env.URI;
 const USER = process.env.USER;
 const PASSWORD = process.env.PASSWORD;
 const neo4j = require("neo4j-driver");
 
-console.log(URI)
-
 export class Neo4jDriver {
 
   static driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASSWORD));
   static hasConnected = false;
 
-  static async getDriver() {
+  /**
+    * Checks to ensure connection with the database was successful, outputting relevant databse data
+    * @function
+    * @returns {void}
+    */
+  static async checkConnection() {
     if (Neo4jDriver.hasConnected) {
       return;
     }
@@ -31,25 +38,48 @@ export class Neo4jDriver {
     }
   }
 
+  /**
+    * Gets all entires from database
+    * @function
+    * @returns {list}
+    */
   static async getAllEntries() {
-    await this.getDriver()
+    await this.checkConnection()
     return await this.#read("MATCH (e:Entry) RETURN e.name AS name");
   }
   
+  /**
+    * Gets one entry by name
+    * @function
+    * @param {string}
+    * @returns {object}
+    */
   static async readEntry(name) {
-    await this.getDriver()
+    await this.checkConnection()
     let query = "MATCH (e:Entry { name: '" + name + "' }) RETURN e.name AS name";
     return this.#read(query);
   }
   
+  /**
+    * Creates new entry in database
+    * @function
+    * @param {string}
+    * @returns {void}
+    */
   static async createEntry(name) {
-    await this.getDriver()
+    await this.checkConnection()
     let query = "MERGE (:Entry {name: '" + name + "', text:''})";
     return this.#write(query);
   }
   
+  /**
+    * Deletes entry from database by name
+    * @function
+    * @param {string}
+    * @returns {void}
+    */
   static async deleteEntry(name) {
-    await this.getDriver()
+    await this.checkConnection()
     let query = "MATCH (e:Entry {name: '" + name + "'}) DELETE e";
     const session = Neo4jDriver.driver.session();
     try {
@@ -61,6 +91,13 @@ export class Neo4jDriver {
     }
   }
   
+  /**
+    * Reads from the databse using a session
+    * @function
+    * @param {cypher}
+    * @param {object}
+    * @returns {list}
+    */
   static async #read(cypher, params = {}) {
     // 1. Open a session
     const session = Neo4jDriver.driver.session();
@@ -79,6 +116,13 @@ export class Neo4jDriver {
     }
   }
   
+  /**
+    * Writes to the databse using a session
+    * @function
+    * @param {cypher}
+    * @param {object}
+    * @returns {list}
+    */
   static async #write(cypher, params = {}) {
     // 1. Open a session
     const session = Neo4jDriver.driver.session();
@@ -98,9 +142,3 @@ export class Neo4jDriver {
   }
 
 }
-
-
-// read example:
-//    await read('MATCH (e:Entry) RETURN e.name AS name')
-// write example:
-//    await write("MERGE (:Entry:Character {name: 'The Green Knight', text:''})")
