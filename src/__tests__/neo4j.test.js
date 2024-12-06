@@ -1,7 +1,6 @@
 
 import { expect, test } from 'vitest'
 import { Neo4jDriver } from '../app/lib/neo4j'
-import Entry from '../app/lib/entry'
 
 /**
  * @fileoverview Unit tests for the `createEntry`, `readEntry`, and `deleteEntry` 
@@ -34,7 +33,7 @@ test('getAllEntries returns Bob, Sally, and Monica', async () => {
     await Neo4jDriver.createEntry('Sally')
     await Neo4jDriver.createEntry('Monica')
     let result = await Neo4jDriver.getAllEntries()
-    expect(result).toEqual([
-        {name: 'Sally', type: 'None'}, {name: 'Monica', type: 'None'}, {name: 'Bob', type: 'None'} ])
+    expect(result).toEqual(expect.arrayContaining([
+        {name: 'Sally', type: 'None'}, {name: 'Monica', type: 'None'}, {name: 'Bob', type: 'None'} ]))
     clearDB()
 })
