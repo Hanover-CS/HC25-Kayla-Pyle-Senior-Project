@@ -1,15 +1,16 @@
+
+const URI = process.env.URI;
+const USER = process.env.USER;
+const PASSWORD = process.env.PASSWORD;
+const neo4j = require("neo4j-driver");
+import Entry from "./entry";
+
 /**
  * @class Holds the Neo4j driver object instance.
  * @description This singleton class interacts with the Neo4j database to retrive and write information.
  * 
  * @constructor
  */
-
-const URI = process.env.URI;
-const USER = process.env.USER;
-const PASSWORD = process.env.PASSWORD;
-const neo4j = require("neo4j-driver");
-
 export class Neo4jDriver {
 
   static driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASSWORD));
@@ -45,6 +46,12 @@ export class Neo4jDriver {
     */
   static async getAllEntries() {
     await this.checkConnection()
+    const records = await this.#read("MATCH (e:Entry) RETURN e.name AS name, e.type AS type, e.text");
+    let entries = []
+    for (let i = 0; i < records.length; i++) {
+      entries.push(new Entry(records[i].name, records[i].type, records[i].text))
+    }
+    console.log(entries)
     return await this.#read("MATCH (e:Entry) RETURN e.name AS name");
   }
   
@@ -56,8 +63,10 @@ export class Neo4jDriver {
     */
   static async readEntry(name) {
     await this.checkConnection()
-    let query = "MATCH (e:Entry { name: '" + name + "' }) RETURN e.name AS name";
-    return this.#read(query);
+    let query = `MATCH (e:Entry { {name: '${name}' }) RETURN e.name AS name`;
+    let record = this.#read(query);
+    let entry = new Entry(record[0].name, record[0].type, record[0].text)
+    return entry;
   }
   
   /**
@@ -66,10 +75,11 @@ export class Neo4jDriver {
     * @param {string}
     * @returns {void}
     */
-  static async createEntry(name) {
+  static async createEntry(entry) {
     await this.checkConnection()
-    let query = "MERGE (:Entry {name: '" + name + "', text:''})";
-    return this.#write(query);
+    let query = `MERGE (:Entry {name: '${entry.name}', type: '${entry.type}', text: '${entry.text}' })`;
+    this.#write(query);
+    return
   }
   
   /**
@@ -78,9 +88,9 @@ export class Neo4jDriver {
     * @param {string}
     * @returns {void}
     */
-  static async deleteEntry(name) {
+  static async deleteEntry(entry) {
     await this.checkConnection()
-    let query = "MATCH (e:Entry {name: '" + name + "'}) DELETE e";
+    let query = `MATCH (e:Entry {name: '${entry.name}'}) DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
       await session.run(query);
@@ -92,7 +102,7 @@ export class Neo4jDriver {
   }
   
   /**
-    * Reads from the databse using a session
+    * Reads from the database using a session
     * @function
     * @param {cypher}
     * @param {object}
@@ -117,7 +127,7 @@ export class Neo4jDriver {
   }
   
   /**
-    * Writes to the databse using a session
+    * Writes to the database using a session
     * @function
     * @param {cypher}
     * @param {object}
