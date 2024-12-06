@@ -1,26 +1,23 @@
-
 const URI = process.env.URI;
 const USER = process.env.USER;
 const PASSWORD = process.env.PASSWORD;
 const neo4j = require("neo4j-driver");
-import Entry from "./entry";
 
 /**
  * @class Holds the Neo4j driver object instance.
  * @description This singleton class interacts with the Neo4j database to retrive and write information.
- * 
+ *
  * @constructor
  */
 export class Neo4jDriver {
-
   static driver = neo4j.driver(URI, neo4j.auth.basic(USER, PASSWORD));
   static hasConnected = false;
 
   /**
-    * Checks to ensure connection with the database was successful, outputting relevant databse data
-    * @function
-    * @returns {void}
-    */
+   * Checks to ensure connection with the database was successful, outputting relevant databse data
+   * @function
+   * @returns {void}
+   */
   static async checkConnection() {
     if (Neo4jDriver.hasConnected) {
       return;
@@ -40,47 +37,49 @@ export class Neo4jDriver {
   }
 
   /**
-    * Gets all entires from database
-    * @function
-    * @returns {list}
-    */
+   * Gets all entires from database
+   * @function
+   * @returns {list}
+   */
   static async getAllEntries() {
-    await this.checkConnection()
-    return await this.#read("MATCH (e:Entry) RETURN e.name AS name, e.type AS type");
+    await this.checkConnection();
+    return await this.#read(
+      "MATCH (e:Entry) RETURN e.name AS name, e.type AS type",
+    );
   }
-  
+
   /**
-    * Gets one entry by name
-    * @function
-    * @param {string}
-    * @returns {object}
-    */
+   * Gets one entry by name
+   * @function
+   * @param {string}
+   * @returns {object}
+   */
   static async readEntry(name) {
-    await this.checkConnection()
+    await this.checkConnection();
     let query = `MATCH (e:Entry { name: '${name}' }) RETURN e.name AS name, e.type AS type, e.text AS text`;
     return this.#read(query);
   }
-  
+
   /**
-    * Creates new entry in database
-    * @function
-    * @param {string}
-    * @returns {void}
-    */
-  static async createEntry(name, type = 'None') {
-    await this.checkConnection()
+   * Creates new entry in database
+   * @function
+   * @param {string}
+   * @returns {void}
+   */
+  static async createEntry(name, type = "None") {
+    await this.checkConnection();
     let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`;
     return this.#write(query);
   }
-  
+
   /**
-    * Deletes entry from database by name
-    * @function
-    * @param {string}
-    * @returns {void}
-    */
+   * Deletes entry from database by name
+   * @function
+   * @param {string}
+   * @returns {void}
+   */
   static async deleteEntry(name) {
-    await this.checkConnection()
+    await this.checkConnection();
     let query = `MATCH (e:Entry {name: '${name}'}) DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
@@ -91,50 +90,25 @@ export class Neo4jDriver {
       await session.close();
     }
   }
-  
+
   /**
-    * Reads from the database using a session
-    * @function
-    * @param {cypher}
-    * @param {object}
-    * @returns {list}
-    */
+   * Reads from the database using a session
+   * @function
+   * @param {cypher}
+   * @param {object}
+   * @returns {list}
+   */
   static async #read(cypher, params = {}) {
     // 1. Open a session
     const session = Neo4jDriver.driver.session();
-  
+
     try {
       // 2. Execute a Cypher Statement
       const res = await session.executeRead((tx) => tx.run(cypher, params));
-  
+
       // 3. Process the Results
       const values = res.records.map((record) => record.toObject());
-  
-      return values;
-    } finally {
-      // 4. Close the session
-      await session.close();
-    }
-  }
-  
-  /**
-    * Writes to the database using a session
-    * @function
-    * @param {cypher}
-    * @param {object}
-    * @returns {list}
-    */
-  static async #write(cypher, params = {}) {
-    // 1. Open a session
-    const session = Neo4jDriver.driver.session();
-  
-    try {
-      // 2. Execute a Cypher Statement
-      const res = await session.executeWrite((tx) => tx.run(cypher, params));
-  
-      // 3. Process the Results
-      const values = res.records.map((record) => record.toObject());
-  
+
       return values;
     } finally {
       // 4. Close the session
@@ -142,4 +116,28 @@ export class Neo4jDriver {
     }
   }
 
+  /**
+   * Writes to the database using a session
+   * @function
+   * @param {cypher}
+   * @param {object}
+   * @returns {list}
+   */
+  static async #write(cypher, params = {}) {
+    // 1. Open a session
+    const session = Neo4jDriver.driver.session();
+
+    try {
+      // 2. Execute a Cypher Statement
+      const res = await session.executeWrite((tx) => tx.run(cypher, params));
+
+      // 3. Process the Results
+      const values = res.records.map((record) => record.toObject());
+
+      return values;
+    } finally {
+      // 4. Close the session
+      await session.close();
+    }
+  }
 }
