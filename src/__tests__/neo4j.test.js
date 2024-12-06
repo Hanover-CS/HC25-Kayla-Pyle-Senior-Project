@@ -1,6 +1,7 @@
 
 import { expect, test } from 'vitest'
 import { Neo4jDriver } from '../app/lib/neo4j'
+import Entry from '../app/lib/entry'
 
 /**
  * @fileoverview Unit tests for the `createEntry`, `readEntry`, and `deleteEntry` 
@@ -10,34 +11,30 @@ import { Neo4jDriver } from '../app/lib/neo4j'
 function clearDB() {
     const entries = Neo4jDriver.getAllEntries()
     for (let i = 0; i < entries.length; i++) {
-        Neo4jDriver.deleteEntry(entry)
+        Neo4jDriver.deleteEntry(entries[i].name)
     }
 }
 
 test('createEntry method adds Bob', async () => {
-    let bob = new Entry('Bob')
-    await Neo4jDriver.createEntry(bob)
+    await Neo4jDriver.createEntry('Bob')
     let result = await Neo4jDriver.readEntry('Bob')
-    expect(result).toEqual(new Entry('Bob'))
+    expect(result).toEqual([{name: 'Bob', type: 'None', text:''}])
     clearDB()
 })
 
 test('deleteEntry deletes Bob', async () => {
-    let bob = new Entry('Bob')
-    await Neo4jDriver.createEntry(bob)
-    await Neo4jDriver.deleteEntry(bob)
+    await Neo4jDriver.createEntry('Bob')
+    await Neo4jDriver.deleteEntry('Bob')
     let result = await Neo4jDriver.readEntry('Bob')
     expect(result).toEqual([])
 })
 
 test('getAllEntries returns Bob, Sally, and Monica', async () => {
-    let bob = new Entry('Bob')
-    await Neo4jDriver.createEntry(bob)
-    let sally = new Entry('Sally')
-    await Neo4jDriver.createEntry(sally)
-    let monica = new Entry('Monica')
-    await Neo4jDriver.createEntry(monica)
+    await Neo4jDriver.createEntry('Bob')
+    await Neo4jDriver.createEntry('Sally')
+    await Neo4jDriver.createEntry('Monica')
     let result = await Neo4jDriver.getAllEntries()
-    expect(result).toEqual([new Entry('Bob'), new Entry('Sally'), new Entry('Monica')])
+    expect(result).toEqual([
+        {name: 'Sally', type: 'None'}, {name: 'Monica', type: 'None'}, {name: 'Bob', type: 'None'} ])
     clearDB()
 })

@@ -46,13 +46,7 @@ export class Neo4jDriver {
     */
   static async getAllEntries() {
     await this.checkConnection()
-    const records = await this.#read("MATCH (e:Entry) RETURN e.name AS name, e.type AS type, e.text");
-    let entries = []
-    for (let i = 0; i < records.length; i++) {
-      entries.push(new Entry(records[i].name, records[i].type, records[i].text))
-    }
-    console.log(entries)
-    return await this.#read("MATCH (e:Entry) RETURN e.name AS name");
+    return await this.#read("MATCH (e:Entry) RETURN e.name AS name, e.type AS type");
   }
   
   /**
@@ -63,10 +57,8 @@ export class Neo4jDriver {
     */
   static async readEntry(name) {
     await this.checkConnection()
-    let query = `MATCH (e:Entry { {name: '${name}' }) RETURN e.name AS name`;
-    let record = this.#read(query);
-    let entry = new Entry(record[0].name, record[0].type, record[0].text)
-    return entry;
+    let query = `MATCH (e:Entry { name: '${name}' }) RETURN e.name AS name, e.type AS type, e.text AS text`;
+    return this.#read(query);
   }
   
   /**
@@ -75,11 +67,10 @@ export class Neo4jDriver {
     * @param {string}
     * @returns {void}
     */
-  static async createEntry(entry) {
+  static async createEntry(name, type = 'None') {
     await this.checkConnection()
-    let query = `MERGE (:Entry {name: '${entry.name}', type: '${entry.type}', text: '${entry.text}' })`;
-    this.#write(query);
-    return
+    let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`;
+    return this.#write(query);
   }
   
   /**
@@ -88,9 +79,9 @@ export class Neo4jDriver {
     * @param {string}
     * @returns {void}
     */
-  static async deleteEntry(entry) {
+  static async deleteEntry(name) {
     await this.checkConnection()
-    let query = `MATCH (e:Entry {name: '${entry.name}'}) DELETE e`;
+    let query = `MATCH (e:Entry {name: '${name}'}) DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
       await session.run(query);
