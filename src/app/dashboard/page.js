@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react"
+import Link from "next/link"
 
 /**
- * A select componenet which displays all entries from database.
+ * A select component which displays all entries from database.
  * @component
  */
 
@@ -45,6 +46,11 @@ export default function Dashboard( { onSelect } ) {
             <option value={option.name} key={option.name}>{option.name}</option>
           ))}
         </select>
+        <Link href="/entryView">
+          <button disabled={!selectedValue} className="bg-gray-400 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-200">
+            Edit Entry
+          </button>
+        </Link>
       </main>
     </div>
   )
