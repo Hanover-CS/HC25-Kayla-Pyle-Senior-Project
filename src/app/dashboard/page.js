@@ -7,7 +7,7 @@ import Link from "next/link"
  * @component
  */
 
-export default function Dashboard( { onSelect } ) {
+export default function Dashboard() {
   const [entries, setEntries] = useState([])
   const [selectedValue, setSelectedValue] = useState(undefined)
 
@@ -46,7 +46,10 @@ export default function Dashboard( { onSelect } ) {
             <option value={option.name} key={option.name}>{option.name}</option>
           ))}
         </select>
-        <Link href="/entryView">
+        <Link href={{
+          pathname: "/entryView",
+          query: { entry: selectedValue }
+        }}>
           <button disabled={!selectedValue} className="bg-gray-400 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-200">
             Edit Entry
           </button>
