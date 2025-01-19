@@ -56,8 +56,9 @@ export class Neo4jDriver {
    */
   static async readEntry(name) {
     await this.checkConnection();
-    let query = `MATCH (e:Entry { name: '${name}' }) RETURN e.name AS name, e.type AS type, e.text AS text`;
-    return this.#read(query);
+    let query = `MATCH (e:Entry { name: '${name}' }) RETURN e.name AS name, e.type AS type, e.text AS text`
+    let result = await this.#read(query)
+    return result
   }
 
   /**
@@ -68,8 +69,9 @@ export class Neo4jDriver {
    */
   static async createEntry(name, type = "None") {
     await this.checkConnection();
-    let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`;
-    return this.#write(query);
+    let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`
+    let result = await this.#write(query)
+    return result;
   }
 
   /**

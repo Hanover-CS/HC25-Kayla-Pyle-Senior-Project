@@ -28,13 +28,7 @@ export default function Dashboard() {
 
   const handleChange = async (event) => {
     const value = event.target.value
-    setSelectedValue(value)
-
-    await fetch('/api/selectedEntry', {
-      method: 'POST',
-      headers: { 'Content-Type' : 'application/json' },
-      body: JSON.stringify({ value }),
-    })    
+    setSelectedValue(value)   
   }
 
   return (
