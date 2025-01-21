@@ -1,9 +1,10 @@
 "use client"
 
 import { useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, Suspense } from "react"
 
-export default function EntryView() {
+
+function EntryViewLayout() {
     const searchParams = useSearchParams()
     const entry = searchParams.get("entry")
     const [entryData, setEntryData] = useState({
@@ -27,5 +28,13 @@ export default function EntryView() {
             <p>Entry View Page</p>
             <p>{ entryData.name }</p> 
         </div>
+    )
+}
+
+export default function EntryView() {
+    return(
+        <Suspense>
+            <EntryViewLayout />
+        </Suspense>
     )
 }
