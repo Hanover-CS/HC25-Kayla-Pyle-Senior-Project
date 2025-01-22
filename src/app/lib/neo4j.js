@@ -65,13 +65,13 @@ export class Neo4jDriver {
    * Creates new entry in database
    * @function
    * @param {string}
+   * @param {string}
    * @returns {void}
    */
   static async createEntry(name, type = "None") {
     await this.checkConnection();
     let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`
-    let result = await this.#write(query)
-    return result;
+    await this.#write(query)
   }
 
   /**
@@ -91,6 +91,19 @@ export class Neo4jDriver {
     } finally {
       await session.close();
     }
+  }
+
+  /**
+   * Modifies text property of given entry
+   * @function
+   * @param {string}
+   * @param {string}
+   * @returns {void}
+   */
+  static async modifyText(name, text) {
+    await this.checkConnection()
+    let query = `MATCH (e:Entry {name: '${name}'}) SET e.text = '${text}'`
+    await this.#write(query)
   }
 
   /**

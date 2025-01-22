@@ -27,6 +27,7 @@ function EntryViewLayout() {
         <div>
             <p>Entry View Page</p>
             <p>{ entryData.name }</p> 
+            <p>{ entryData.text }</p>
         </div>
     )
 }
