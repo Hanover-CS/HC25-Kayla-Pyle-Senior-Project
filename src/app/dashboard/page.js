@@ -1,6 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
+import character from "../assets/Character.png"
+import event from "../assets/Event.png"
+import location from "../assets/Location.png"
+import organization from "../assets/Organization.png"
+
+const imageMap = {
+  Character: character,
+  Event: event,
+  Location: location,
+  Organization: organization
+}
 
 /**
  * A select component which displays all entries from database.
@@ -32,23 +44,34 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl font-serif font-bold">Dashboard Page</h1>
-        <select className="form-select" value={selectedValue} onChange={handleChange}>
-          {entries.map((option) => (
-            <option value={option.name} key={option.name}>{option.name}</option>
-          ))}
-        </select>
-        <Link href={{
-          pathname: "/entryView",
-          query: { entry: selectedValue }
-        }}>
-          <button disabled={!selectedValue} className="bg-gray-400 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-200">
-            View Entry
+    <div className="h-screen flex flex-col items-center mx-12 py-4 space-y-4">
+        <h1 className="text-4xl font-serif font-bold">World Name</h1>
+        <div>
+          <button className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200">
+            Add Entry
+            </button>
+        </div>
+        <div className="flex flex-col w-full max-h-screen overflow-y-auto">
+          {entries.map((entry) => (
+            <Link
+            href={{
+              pathname: "/entryView",
+              query: { entry: entry.name }
+            }}
+            key={entry.name}>
+          <button
+            className="w-full flex items-center justify-between p-2 border-2 border-black-200 text-black hover:bg-blue-100 text-left">
+              <span>{ entry.name }</span>
+              <Image 
+                src={imageMap[`${entry.type}`]}
+                alt=""
+                width={30}
+                height={30}
+              />
           </button>
-        </Link>
-      </main>
+          </Link>
+          ))}
+        </div>
     </div>
   )
 }
