@@ -10,3 +10,13 @@ export async function GET(req) {
     console.log(`API fetching error\n${err}\nCause: ${err.cause}`)
   }
 }
+
+export async function POST(req) {
+    const { name, text } = await req.json()
+    try {
+        await Neo4jDriver.modifyText(name, text)
+        return new Response(JSON.stringify("Successfully saved text"), {status: 200})
+      } catch (err) {
+        console.log(`API posting error\n${err}\nCause: ${err.cause}`)
+      }
+  }
