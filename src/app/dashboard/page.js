@@ -45,7 +45,7 @@ export default function Dashboard() {
           query: { entry: selectedValue }
         }}>
           <button disabled={!selectedValue} className="bg-gray-400 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-200">
-            Edit Entry
+            View Entry
           </button>
         </Link>
       </main>
