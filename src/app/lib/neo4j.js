@@ -56,9 +56,9 @@ export class Neo4jDriver {
    */
   static async readEntry(name) {
     await this.checkConnection();
-    let query = `MATCH (e:Entry { name: "${name}" }) RETURN e.name AS name, e.type AS type, e.text AS text`
-    let result = await this.#read(query)
-    return result
+    let query = `MATCH (e:Entry { name: "${name}" }) RETURN e.name AS name, e.type AS type, e.text AS text`;
+    let result = await this.#read(query);
+    return result;
   }
 
   /**
@@ -70,8 +70,8 @@ export class Neo4jDriver {
    */
   static async createEntry(name, type = "None") {
     await this.checkConnection();
-    let query = `MERGE (:Entry {name: "${name}", type:"${type}", text:""})`
-    await this.#write(query)
+    let query = `MERGE (:Entry {name: "${name}", type:"${type}", text:""})`;
+    await this.#write(query);
   }
 
   /**
@@ -101,9 +101,9 @@ export class Neo4jDriver {
    * @returns {void}
    */
   static async modifyText(name, text) {
-    await this.checkConnection()
-    let query = `MATCH (e:Entry {name: "${name}"}) SET e.text = "${text}"`
-    await this.#write(query)
+    await this.checkConnection();
+    let query = `MATCH (e:Entry {name: "${name}"}) SET e.text = "${text}"`;
+    await this.#write(query);
   }
 
   /**
