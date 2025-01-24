@@ -56,7 +56,7 @@ export class Neo4jDriver {
    */
   static async readEntry(name) {
     await this.checkConnection();
-    let query = `MATCH (e:Entry { name: '${name}' }) RETURN e.name AS name, e.type AS type, e.text AS text`
+    let query = `MATCH (e:Entry { name: "${name}" }) RETURN e.name AS name, e.type AS type, e.text AS text`
     let result = await this.#read(query)
     return result
   }
@@ -70,7 +70,7 @@ export class Neo4jDriver {
    */
   static async createEntry(name, type = "None") {
     await this.checkConnection();
-    let query = `MERGE (:Entry {name: '${name}', type:'${type}', text:''})`
+    let query = `MERGE (:Entry {name: "${name}", type:"${type}", text:""})`
     await this.#write(query)
   }
 
@@ -82,7 +82,7 @@ export class Neo4jDriver {
    */
   static async deleteEntry(name) {
     await this.checkConnection();
-    let query = `MATCH (e:Entry {name: '${name}'}) DELETE e`;
+    let query = `MATCH (e:Entry {name: "${name}"}) DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
       await session.run(query);
@@ -102,7 +102,7 @@ export class Neo4jDriver {
    */
   static async modifyText(name, text) {
     await this.checkConnection()
-    let query = `MATCH (e:Entry {name: '${name}'}) SET e.text = '${text}'`
+    let query = `MATCH (e:Entry {name: "${name}"}) SET e.text = "${text}"`
     await this.#write(query)
   }
 
