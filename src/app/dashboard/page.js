@@ -53,10 +53,7 @@ export default function Dashboard() {
       <div className="flex flex-col w-full max-h-screen overflow-y-auto">
         {entries.map((entry) => (
           <Link
-            href={{
-              pathname: "/entryView",
-              query: { entry: entry.name },
-            }}
+            href={`/entryView/${entry.name}`}
             key={entry.name}
           >
             <button className="w-full flex items-center justify-between p-2 border-2 border-black-200 text-black hover:bg-blue-100 text-left">
