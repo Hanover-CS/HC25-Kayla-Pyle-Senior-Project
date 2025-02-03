@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import character from "../assets/Character.png";
-import event from "../assets/Event.png";
-import location from "../assets/Location.png";
-import organization from "../assets/Organization.png";
-import NewEntryForm from "../components/NewEntryForm";
+import character from "../../assets/Character.png";
+import event from "../../assets/Event.png";
+import location from "../../assets/Location.png";
+import organization from "../../assets/Organization.png";
+import NewEntryForm from "../../components/NewEntryForm";
 
 const imageMap = {
   Character: character,
@@ -20,7 +20,9 @@ const imageMap = {
  * @component
  */
 
-export default function Dashboard() {
+export default function Dashboard({ params }) {
+  const paramsUnwrapped = use(params)
+  const user = paramsUnwrapped.user.replaceAll("%20", " ")
   const [entries, setEntries] = useState([]);
   const [formHidden, setFormHidden] = useState(true)
 
@@ -44,7 +46,7 @@ export default function Dashboard() {
 
   return (
     <div className="h-screen flex flex-col items-center mx-12 py-4 space-y-4">
-      <h1 className="text-4xl font-serif font-bold">World Name</h1>
+      <h1 className="text-4xl font-serif font-bold">{`${user}'s World`}</h1>
       <div>
         <button 
         className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200"

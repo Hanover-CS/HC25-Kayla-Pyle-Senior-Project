@@ -39,7 +39,7 @@ const LogIn = ({ isHidden, closeModal, switchToSignUp }) => {
             alert("Username or Password is incorrect")
             return
         } else {
-            router.push("/dashboard")
+            router.push(`/dashboard/${user}`)
         }
     }
 
@@ -101,7 +101,7 @@ const SignUp = ({ isHidden, closeModal, switchToLogIn }) => {
             },
             body: JSON.stringify({ user: user, password: password }),
           });
-        router.push("/dashboard")
+        router.push(`/dashboard/${user}`)
     }
 
   return (
