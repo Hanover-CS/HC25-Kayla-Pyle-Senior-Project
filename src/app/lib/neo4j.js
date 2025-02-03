@@ -70,7 +70,8 @@ export class Neo4jDriver {
    */
   static async createEntry(name, type = "None") {
     await this.checkConnection();
-    let query = `MERGE (:Entry {name: "${name}", type:"${type}", text:""})`;
+    const uniqueName = await this.uniqueName(name)
+    let query = `MERGE (:Entry {name: "${uniqueName}", type:"${type}", text:""})`;
     await this.#write(query);
   }
 
@@ -104,6 +105,42 @@ export class Neo4jDriver {
     await this.checkConnection();
     let query = `MATCH (e:Entry {name: "${name}"}) SET e.text = "${text}"`;
     await this.#write(query);
+  }
+
+  /**
+   * Modifies name property of given entry
+   * @function
+   * @param {string}
+   * @param {string}
+   * @returns {void}
+   */
+  static async modifyName(currName, newName) {
+    await this.checkConnection();
+    const uniqueNewName = await this.uniqueName(newName)
+    let query = `MATCH (e:Entry {name: "${currName}"}) SET e.text = "${newName}"`;
+    await this.#write(query);
+  }
+
+  /**
+   * Helper function to ensure no two entries have the same name
+   * @function
+   * @param {string}
+   * @returns {string}
+   */
+  static async uniqueName(name) {
+    const entries = await this.getAllEntries()
+    const entryNames = entries.map(entry => entry.name)
+    if (!entryNames.includes(name)) {
+      return name
+    } else {
+      let count = 1;
+      let newName = `${name}(${count})`;
+      while (entryNames.includes(newName)) {
+        count++;
+        newName = `${name}(${count})`;
+      }
+      return newName;
+    }
   }
 
   /**

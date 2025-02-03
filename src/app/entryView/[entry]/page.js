@@ -5,8 +5,9 @@ import Link from "next/link";
 
 export default function EntryView({ params }) {
     const paramsUnwrapped = use(params)
+    const givenName = paramsUnwrapped.entry.replaceAll("%20", " ")
     // Track entry data
-    const [name, setName] = useState(paramsUnwrapped.entry.replaceAll("%20", " "));
+    const [name, setName] = useState(givenName);
     const [type, setType] = useState("");
     const [text, setText] = useState("");
     const [entries, setEntries] = useState([]);
@@ -57,22 +58,24 @@ export default function EntryView({ params }) {
       toggleHidden();
     };
   
-    const handleChange = (event) => {
+    const handleTextChange = (event) => {
       setText(event.target.value);
     };
   
     return (
       <div>
         <div className="h-screen flex flex-col justify-start mx-36 py-4">
-          <h1 className="text-3xl font-bold">{name}</h1>
+          <p 
+            className="top-0 left-0 text-3xl font-bold"
+          >{name}</p>
           <div className="w-full h-full">
             <textarea
-            hidden={!isHidden}
+              hidden={!isHidden}
               className="w-full h-full top-0 left-0 p-4 border rounded-lg text-xl"
               type="text"
               disabled={inputDisabled}
               defaultValue={text}
-              onChange={handleChange}
+              onChange={handleTextChange}
             ></textarea>
             <p
               hidden={isHidden}

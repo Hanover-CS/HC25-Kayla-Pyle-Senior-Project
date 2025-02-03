@@ -6,6 +6,7 @@ import character from "../assets/Character.png";
 import event from "../assets/Event.png";
 import location from "../assets/Location.png";
 import organization from "../assets/Organization.png";
+import NewEntryForm from "../components/NewEntryForm";
 
 const imageMap = {
   Character: character,
@@ -21,7 +22,7 @@ const imageMap = {
 
 export default function Dashboard() {
   const [entries, setEntries] = useState([]);
-  const [selectedValue, setSelectedValue] = useState(undefined);
+  const [formHidden, setFormHidden] = useState(true)
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -37,16 +38,17 @@ export default function Dashboard() {
     fetchEntries();
   }, []);
 
-  const handleChange = async (event) => {
-    const value = event.target.value;
-    setSelectedValue(value);
-  };
+  const toggleFormHidden = () => {
+    setFormHidden(!formHidden)
+  }
 
   return (
     <div className="h-screen flex flex-col items-center mx-12 py-4 space-y-4">
       <h1 className="text-4xl font-serif font-bold">World Name</h1>
       <div>
-        <button className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200">
+        <button 
+        className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200"
+        onClick={toggleFormHidden}>
           Add Entry
         </button>
       </div>
@@ -68,6 +70,7 @@ export default function Dashboard() {
           </Link>
         ))}
       </div>
+      <NewEntryForm isHidden={formHidden} closeModal={toggleFormHidden} />
     </div>
   );
 }
