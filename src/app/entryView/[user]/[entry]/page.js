@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function EntryView({ params }) {
     const paramsUnwrapped = use(params)
+    const user = paramsUnwrapped.user.replaceAll("%20", " ")
     const givenName = paramsUnwrapped.entry.replaceAll("%20", " ")
     // Track entry data
     const [name, setName] = useState(givenName);
@@ -19,13 +20,13 @@ export default function EntryView({ params }) {
       const fetchData = async () => {
         try {
           const entryResponse = await fetch(
-            `/api/entryData?entryName=${name}`,
+            `/api/entryData?user=${user}&entryName=${name}`,
           );
           const entrydata = await entryResponse.json();
           setType(entrydata.type);
           setText(entrydata.text);
   
-          const entriesResponse = await fetch("/api/entries");
+          const entriesResponse = await fetch(`/api/entries?user=${user}`);
           const allEntries = await entriesResponse.json();
           const otherEntries = allEntries.filter(item => item.name !== name).map(entry => entry.name)
           setEntries(otherEntries);
@@ -52,7 +53,7 @@ export default function EntryView({ params }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: name, text: text }),
+        body: JSON.stringify({ user: user, name: name, text: text }),
       });
       setInputDisabled(true);
       toggleHidden();
@@ -85,7 +86,7 @@ export default function EntryView({ params }) {
                 return (
                   <Link
                   className="text-blue-700 underline"
-                    href={`/entryView/${part}`}
+                    href={`/entryView/${user}/${part}`}
                     replace={true}
                     key={part}
                   >{part}</Link>

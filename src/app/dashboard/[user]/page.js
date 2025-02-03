@@ -29,7 +29,9 @@ export default function Dashboard({ params }) {
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await fetch("/api/entries");
+        const response = await fetch(
+          `/api/entries?user=${user}`,
+        );
         const entries = await response.json();
         setEntries(entries);
       } catch (err) {
@@ -57,7 +59,7 @@ export default function Dashboard({ params }) {
       <div className="flex flex-col w-full max-h-screen overflow-y-auto">
         {entries.map((entry) => (
           <Link
-            href={`/entryView/${entry.name}`}
+            href={`/entryView/${user}/${entry.name}`}
             key={entry.name}
           >
             <button className="w-full flex items-center justify-between p-2 border-2 border-black-200 text-black hover:bg-blue-100 text-left">
@@ -72,7 +74,7 @@ export default function Dashboard({ params }) {
           </Link>
         ))}
       </div>
-      <NewEntryForm isHidden={formHidden} closeModal={toggleFormHidden} />
+      <NewEntryForm isHidden={formHidden} closeModal={toggleFormHidden} user={user} />
     </div>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-export default function NewEntryForm({ isHidden, closeModal }) {
+export default function NewEntryForm({ user, isHidden, closeModal }) {
     if (isHidden) {return null}
     const [name, setName] = useState('New Entry')
     const [type, setType] = useState('Character')
@@ -13,7 +13,7 @@ export default function NewEntryForm({ isHidden, closeModal }) {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name: name, type: type }),
+            body: JSON.stringify({ user: user, name: name, type: type }),
           });
         closeModal()
         window.location.reload()

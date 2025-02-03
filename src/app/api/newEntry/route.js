@@ -1,9 +1,9 @@
 import { Neo4jDriver } from "../../lib/neo4j";
 
 export async function POST(req) {
-    const { name, type } = await req.json();
+    const { user, name, type } = await req.json();
     try {
-      await Neo4jDriver.createEntry(name, type);
+      await Neo4jDriver.createEntry(user, name, type);
       return new Response(JSON.stringify("Successfully created entry"), {
         status: 200,
       });
