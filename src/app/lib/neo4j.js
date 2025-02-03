@@ -76,6 +76,32 @@ export class Neo4jDriver {
   }
 
   /**
+   * Creates new profile in database
+   * @function
+   * @param {string}
+   * @param {string}
+   * @returns {void}
+   */
+  static async createProfile(username, password) {
+    await this.checkConnection();
+    let query = `MERGE (:Profile {username: "${username}", password:"${password}"})`;
+    await this.#write(query);
+  }
+
+  /**
+   * Get a profile by username from database
+   * @function
+   * @param {string}
+   * @returns {list}
+   */
+  static async getProfile(username) {
+    await this.checkConnection();
+    return await this.#read(
+      `MATCH (p:Profile  {username: "${username}" }) RETURN p.username AS username, p.password AS password`,
+    );
+  }
+
+  /**
    * Deletes entry from database by name
    * @function
    * @param {string}
