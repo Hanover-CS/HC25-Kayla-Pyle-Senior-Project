@@ -94,6 +94,10 @@ const SignUp = ({ isHidden, closeModal, switchToLogIn }) => {
             alert("Username is already in use")
             return 
         }
+        if(!user || /\s/.test(user) || user == "") { 
+          alert("Please input a username without spaces.")
+          return
+        }
         await fetch("/api/profile", {
             method: "POST",
             headers: {
