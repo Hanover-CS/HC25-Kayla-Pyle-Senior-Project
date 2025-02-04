@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import worldMap from "./assets/WorldMap.jpg";
@@ -9,11 +9,11 @@ import LogInForm from "./components/LogInForm";
  * @component
  */
 export default function Home() {
-  const [formHidden, setFormHidden] = useState(true)
+  const [formHidden, setFormHidden] = useState(true);
 
   const toggleFormHidden = () => {
-    setFormHidden(!formHidden)
-  }
+    setFormHidden(!formHidden);
+  };
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -28,11 +28,12 @@ export default function Home() {
         />
       </main>
       <div className="absolute top-0 right-0 p-8">
-          <button 
+        <button
           className="bg-gray-400 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-200"
-          onClick={toggleFormHidden}>
-            Log In
-          </button>
+          onClick={toggleFormHidden}
+        >
+          Log In
+        </button>
       </div>
       <LogInForm isHidden={formHidden} closeModal={toggleFormHidden} />
     </div>

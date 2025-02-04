@@ -21,17 +21,15 @@ const imageMap = {
  */
 
 export default function Dashboard({ params }) {
-  const paramsUnwrapped = use(params)
-  const user = paramsUnwrapped.user.replaceAll("%20", " ")
+  const paramsUnwrapped = use(params);
+  const user = paramsUnwrapped.user.replaceAll("%20", " ");
   const [entries, setEntries] = useState([]);
-  const [formHidden, setFormHidden] = useState(true)
+  const [formHidden, setFormHidden] = useState(true);
 
   useEffect(() => {
     const fetchEntries = async () => {
       try {
-        const response = await fetch(
-          `/api/entries?user=${user}`,
-        );
+        const response = await fetch(`/api/entries?user=${user}`);
         const entries = await response.json();
         setEntries(entries);
       } catch (err) {
@@ -43,25 +41,23 @@ export default function Dashboard({ params }) {
   }, []);
 
   const toggleFormHidden = () => {
-    setFormHidden(!formHidden)
-  }
+    setFormHidden(!formHidden);
+  };
 
   return (
     <div className="h-screen flex flex-col items-center mx-12 py-4 space-y-4">
       <h1 className="text-4xl font-serif font-bold">{`${user}'s World`}</h1>
       <div>
-        <button 
-        className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200"
-        onClick={toggleFormHidden}>
+        <button
+          className="bg-gray-400 text-white font-semibold p-2 px-4 rounded hover:bg-gray-600 transition duration-200"
+          onClick={toggleFormHidden}
+        >
           Add Entry
         </button>
       </div>
       <div className="flex flex-col w-full max-h-screen overflow-y-auto">
         {entries.map((entry) => (
-          <Link
-            href={`/entryView/${user}/${entry.name}`}
-            key={entry.name}
-          >
+          <Link href={`/entryView/${user}/${entry.name}`} key={entry.name}>
             <button className="w-full flex items-center justify-between p-2 border-2 border-black-200 text-black hover:bg-blue-100 text-left">
               <span>{entry.name}</span>
               <Image
@@ -74,7 +70,11 @@ export default function Dashboard({ params }) {
           </Link>
         ))}
       </div>
-      <NewEntryForm isHidden={formHidden} closeModal={toggleFormHidden} user={user} />
+      <NewEntryForm
+        isHidden={formHidden}
+        closeModal={toggleFormHidden}
+        user={user}
+      />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Neo4jDriver } from "../../lib/neo4j";
 export async function GET(req) {
   const url = new URL(req.url);
   const entryName = url.searchParams.get("entryName");
-  const user = url.searchParams.get("user")
+  const user = url.searchParams.get("user");
   try {
     const data = await Neo4jDriver.readEntry(user, entryName);
     return new Response(JSON.stringify(data[0]), { status: 200 });

@@ -57,8 +57,7 @@ export class Neo4jDriver {
    */
   static async readEntry(user, name) {
     await this.checkConnection();
-    let query = 
-    `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" }) 
+    let query = `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" }) 
     RETURN e.name AS name, e.type AS type, e.text AS text`;
     let result = await this.#read(query);
     return result;
@@ -73,11 +72,10 @@ export class Neo4jDriver {
    */
   static async createEntry(user, name, type = "None") {
     await this.checkConnection();
-    const uniqueName = await this.uniqueName(user, name)
-    let query = 
-    `MATCH (p:Profile {username: "${user}"} )
+    const uniqueName = await this.uniqueName(user, name);
+    let query = `MATCH (p:Profile {username: "${user}"} )
     CREATE (e:Entry {name: "${uniqueName}", type: "${type}", text:""})
-    MERGE (p)-[:HAS_ENTRY]->(e)`
+    MERGE (p)-[:HAS_ENTRY]->(e)`;
     await this.#write(query);
   }
 
@@ -115,8 +113,7 @@ export class Neo4jDriver {
    */
   static async deleteEntry(user, name) {
     await this.checkConnection();
-    let query = 
-    `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" })
+    let query = `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" })
      DETACH DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
@@ -137,8 +134,7 @@ export class Neo4jDriver {
    */
   static async modifyText(user, name, text) {
     await this.checkConnection();
-    let query = 
-    `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" }) 
+    let query = `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" }) 
     SET e.text = "${text}"`;
     await this.#write(query);
   }
@@ -152,9 +148,8 @@ export class Neo4jDriver {
    */
   static async modifyName(user, currName, newName) {
     await this.checkConnection();
-    const uniqueNewName = await this.uniqueName(user, newName)
-    let query = 
-    `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${currName}" }) 
+    const uniqueNewName = await this.uniqueName(user, newName);
+    let query = `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${currName}" }) 
     SET e.name = "${uniqueNewName}"`;
     await this.#write(query);
   }
@@ -166,10 +161,10 @@ export class Neo4jDriver {
    * @returns {string}
    */
   static async uniqueName(user, name) {
-    const entries = await this.getAllEntries(user)
-    const entryNames = entries.map(entry => entry.name)
+    const entries = await this.getAllEntries(user);
+    const entryNames = entries.map((entry) => entry.name);
     if (!entryNames.includes(name)) {
-      return name
+      return name;
     } else {
       let count = 1;
       let newName = `${name}(${count})`;
@@ -190,8 +185,7 @@ export class Neo4jDriver {
    */
   static async deleteProfile(user) {
     await this.checkConnection();
-    let query = 
-    `MATCH (p:Profile {username: "${user}"})
+    let query = `MATCH (p:Profile {username: "${user}"})
      DETACH DELETE p`;
     const session = Neo4jDriver.driver.session();
     try {

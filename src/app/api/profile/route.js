@@ -5,7 +5,9 @@ export async function GET(req) {
   const username = url.searchParams.get("user");
   try {
     const data = await Neo4jDriver.getProfile(username);
-    if (!data[0]) { data[0] = {username: null, password: null} }
+    if (!data[0]) {
+      data[0] = { username: null, password: null };
+    }
     return new Response(JSON.stringify(data[0]), { status: 200 });
   } catch (err) {
     console.log(`API fetching error\n${err}\nCause: ${err.cause}`);
