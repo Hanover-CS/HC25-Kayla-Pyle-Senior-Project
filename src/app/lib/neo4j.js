@@ -53,7 +53,7 @@ export class Neo4jDriver {
    * Gets one entry by name
    * @function
    * @param {string}
-   * @returns {object}
+   * @returns {list}
    */
   static async readEntry(user, name) {
     await this.checkConnection();
@@ -117,7 +117,7 @@ export class Neo4jDriver {
     await this.checkConnection();
     let query = 
     `MATCH (p:Profile {username: "${user}"})-[:HAS_ENTRY]-> (e:Entry { name: "${name}" })
-     DELETE e`;
+     DETACH DELETE e`;
     const session = Neo4jDriver.driver.session();
     try {
       await session.run(query);
@@ -179,6 +179,42 @@ export class Neo4jDriver {
       }
       return newName;
     }
+  }
+
+  /**
+   * Deletes profile from database by username
+   * Only for use in tests
+   * @function
+   * @param {string}
+   * @returns {void}
+   */
+  static async deleteProfile(user) {
+    await this.checkConnection();
+    let query = 
+    `MATCH (p:Profile {username: "${user}"})
+     DETACH DELETE p`;
+    const session = Neo4jDriver.driver.session();
+    try {
+      await session.run(query);
+    } catch (error) {
+      console.error("Error deleting node:", error);
+    } finally {
+      await session.close();
+    }
+  }
+
+  /**
+   * Gets all profiles from database
+   * Only for use in tests
+   * @function
+   * @returns {list}
+   */
+  static async getAllProfiles() {
+    await this.checkConnection();
+    return await this.#read(
+      `MATCH (p:Profile) 
+      RETURN p.username AS username`,
+    );
   }
 
   /**

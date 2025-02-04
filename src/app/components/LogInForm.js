@@ -98,6 +98,10 @@ const SignUp = ({ isHidden, closeModal, switchToLogIn }) => {
           alert("Please input a username without spaces.")
           return
         }
+        if(!password) {
+          alert("Please input password.")
+          return
+        }
         await fetch("/api/profile", {
             method: "POST",
             headers: {
